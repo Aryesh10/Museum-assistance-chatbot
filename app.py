@@ -20,13 +20,13 @@ HUGGINGFACE_API_KEY=os.environ.get('HUGGINGFACE_API_KEY')
 os.environ['PINECONE_API_KEY']=PINECONE_API_KEY
 os.environ['HUGGINGFACE_API_KEY']=HUGGINGFACE_API_KEY
 
-embeggings= download_embeddings()
+embeddings= download_embeddings()
 
 index_name='museumbot'
 
 docsearch=PineconeVectorStore.from_existing_index(
     index_name=index_name,
-    embedding=embeggings
+    embedding=embeddings
 )
 
 retriever = docsearch.as_retriever(search_type='similarity', search_kwargs={"k": 3})
